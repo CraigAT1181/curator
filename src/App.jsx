@@ -7,9 +7,9 @@ const Home = lazy(() => import("./components/Home"));
 
 export default function App() {
   return (
-    <div>
+    <div className="font-body">
       <Header />
-      <main>
+      <main className="px-16 py-6">
         <Suspense fallback={<div>Loading ...</div>}>
           <Routes>
             <Route
