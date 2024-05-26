@@ -6,8 +6,8 @@ const api = axios.create({
 
 export default api;
 
-export const getMetExhibits = async () => {
-  const { data } = await api.get("/met_exhibits");
+export const getMetExhibits = async (pageNumber) => {
+  const { data } = await api.get(`/met_exhibits?page=${pageNumber}`);
 
   return data;
 };

@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ExhibitDisplay from "./ExhibitDisplay";
+import PageChange from "./PageChange";
 import { getMetExhibits } from "../api/api";
+import DropdownList from "./DropDownList";
 
 export default function Home() {
+  const [museum, setMuseum] = useState(null);
   const [exhibits, setExhibits] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {}, []);
-
-  const handleMetClick = () => {
-    // ADD CACHING LOGIC HERE
-    setIsLoading(true);
-    getMetExhibits().then(({ exhibits }) => {
-      setIsLoading(false);
-      setExhibits(exhibits);
-    });
-  };
-
-  const handleFitzClick = () => {
-    // ADD CACHING LOGIC HERE
-  };
+  useEffect(() => {
+    if (museum && museum === "metropolitan") {
+      setIsLoading(true);
+      getMetExhibits(pageNumber).then(({ exhibits }) => {
+        setIsLoading(false);
+        setExhibits(exhibits);
+      });
+    } else if (museum && museum === "fitzwilliam") {
+    } else {
+      setExhibits([]);
+    }
+  }, [museum]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -28,26 +30,8 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        <div className="flex justify-center md:text-xl">
-          <h2>Choose a museum</h2>
-        </div>
-        <div className="md:flex justify-center">
-          <button
-            className="button md:w-auto"
-            onClick={() => {
-              handleMetClick();
-            }}>
-            Metropolitan Museum
-          </button>
-          <button
-            className="button md:w-auto md:ml-2"
-            onClick={() => {
-              handleFitzClick();
-            }}>
-            Fitzwilliam Museum
-          </button>
-        </div>
+      <div className="flex justify-center">
+        <DropdownList setMuseum={setMuseum} />
       </div>
 
       <div>
@@ -57,6 +41,13 @@ export default function Home() {
           )}
         </div>
       </div>
+
+      {exhibits.length > 0 && (
+        <PageChange
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+        />
+      )}
     </div>
   );
 }
