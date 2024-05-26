@@ -48,13 +48,15 @@ export default function Home() {
         </div>
       </div>
 
-      {exhibits.length > 0 && (
-        <PageChange
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-          totalPages={totalPages}
-        />
-      )}
+      <div className="flex justify-center mt-4">
+        {exhibits.length > 0 && (
+          <PageChange
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            totalPages={totalPages}
+          />
+        )}
+      </div>
     </div>
   );
 }
