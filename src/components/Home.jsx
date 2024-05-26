@@ -7,22 +7,25 @@ import DropdownList from "./DropDownList";
 export default function Home() {
   const [museum, setMuseum] = useState(null);
   const [exhibits, setExhibits] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (museum && museum === "metropolitan") {
       setIsLoading(true);
-      getMetExhibits(pageNumber).then(({ exhibits }) => {
+      getMetExhibits(pageNumber).then(({ exhibits, total_pages }) => {
         setIsLoading(false);
         setExhibits(exhibits);
+        setTotalPages(total_pages);
       });
     } else if (museum && museum === "fitzwilliam") {
     } else {
       setExhibits([]);
+      setTotalPages(null);
     }
-  }, [museum]);
+  }, [museum, pageNumber]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -31,7 +34,10 @@ export default function Home() {
   return (
     <div>
       <div className="flex justify-center">
-        <DropdownList setMuseum={setMuseum} />
+        <DropdownList
+          setMuseum={setMuseum}
+          setPageNumber={setPageNumber}
+        />
       </div>
 
       <div>
@@ -46,6 +52,7 @@ export default function Home() {
         <PageChange
           pageNumber={pageNumber}
           setPageNumber={setPageNumber}
+          totalPages={totalPages}
         />
       )}
     </div>

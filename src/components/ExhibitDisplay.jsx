@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import SearchExhibits from "./SearchExhibits";
 import ObjectCard from "./ObjectCard";
 
-
 export default function ExhibitDisplay({ exhibits }) {
   const [searchedExhibits, setSearchedExhibits] = useState([]);
-  
 
   useEffect(() => {}, []);
 
@@ -31,8 +29,6 @@ export default function ExhibitDisplay({ exhibits }) {
             })
           : null}
       </div>
-
-      
     </div>
   );
 }

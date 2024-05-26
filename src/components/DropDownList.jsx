@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function DropdownList({ setMuseum }) {
+export default function DropdownList({ setMuseum, setPageNumber }) {
   const [clicked, setClicked] = useState(false);
 
   return (
@@ -21,7 +21,10 @@ export default function DropdownList({ setMuseum }) {
         } z-50`}>
         <div
           className="block cursor-pointer px-4 py-2 text-gray-800 hover:bg-gray-200"
-          onClick={() => setMuseum("metropolitan")}>
+          onClick={() => {
+            setMuseum("metropolitan");
+            setPageNumber(1);
+          }}>
           Metropolitan Museum
         </div>
         <div
