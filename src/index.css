@@ -1,5 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ----  OBJECT CARD ---- */
+
+.card {
+  @apply bg-gray-100 rounded overflow-hidden shadow-md cursor-pointer relative;
+}
+
+.button {
+  @apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none w-full mt-2;
+}
+
+.badge {
+  @apply bg-white text-xl rounded-full p-1 font-bold right-0 top-0 mr-2 mt-2 absolute;
+}
+
+.missing-image {
+  @apply w-full;
+}
+
+.image {
+  @apply w-full h-32 object-cover;
+}

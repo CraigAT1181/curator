@@ -10,18 +10,16 @@ export default function Home() {
   useEffect(() => {}, []);
 
   const handleMetClick = () => {
-    console.log("You clicked Met!");
-
+    // ADD CACHING LOGIC HERE
     setIsLoading(true);
     getMetExhibits().then(({ exhibits }) => {
       setIsLoading(false);
-      console.log(exhibits);
       setExhibits(exhibits);
     });
   };
 
   const handleFitzClick = () => {
-    console.log("You clicked Fitz!");
+    // ADD CACHING LOGIC HERE
   };
 
   if (isLoading) {
@@ -29,26 +27,35 @@ export default function Home() {
   }
 
   return (
-    <div className="flex-col justify-center">
-      <div className="flex justify-center mt-2">
-        <button
-          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
-          onClick={() => {
-            handleMetClick();
-          }}>
-          Metropolitan Museum
-        </button>
-        <button
-          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none ml-2"
-          onClick={() => {
-            handleFitzClick();
-          }}>
-          Fitzwilliam Museum
-        </button>
+    <div>
+      <div>
+        <div className="flex justify-center md:text-xl">
+          <h2>Choose a museum</h2>
+        </div>
+        <div className="md:flex justify-center">
+          <button
+            className="button md:w-auto"
+            onClick={() => {
+              handleMetClick();
+            }}>
+            Metropolitan Museum
+          </button>
+          <button
+            className="button md:w-auto md:ml-2"
+            onClick={() => {
+              handleFitzClick();
+            }}>
+            Fitzwilliam Museum
+          </button>
+        </div>
       </div>
 
       <div>
-        <ExhibitDisplay exhibits={exhibits} />
+        <div className="flex justify-center">
+          {exhibits && exhibits.length > 0 && (
+            <ExhibitDisplay exhibits={exhibits} />
+          )}
+        </div>
       </div>
     </div>
   );
