@@ -14,14 +14,44 @@ export default function ObjectPage() {
 
   useEffect(() => {
     setIsLoading(true);
-    getSingleObject(objectID).then((object) => {
-      setIsLoading(false);
-      setExhibitObject(object);
-      console.log(object);
-    });
+    getSingleObject(objectID)
+      .then((object) => {
+        setIsLoading(false);
+        setExhibitObject(object);
+      })
+      .catch(({ response: { status, statusText } }) => {
+        setIsLoading(false);
+        setError({ status, statusText });
+      });
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center">
+        <div className="flex-col text-center">
+          <i className="fa-solid fa-spinner fa-spin"></i>
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error)
+    return (
+      <div className="d-flex-col text-center mt-4">
+        <i className="fa-solid fa-exclamation"></i>
+        <p>
+          Oops, there's been an error: {error.status} {error.statusText}
+        </p>
+        <button
+          className="return-home-button mt-4"
+          onClick={() => {
+            navigate("/home");
+          }}>
+          Home
+        </button>
+      </div>
+    );
 
   return (
     <div className="grid gap-3">
