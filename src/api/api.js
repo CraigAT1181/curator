@@ -11,3 +11,9 @@ export const getMetExhibits = async (pageNumber) => {
 
   return data;
 };
+
+export const getSingleObject = async (objectID) => {
+  const { data } = await api.get(`/met_exhibits/${objectID}/objects`);
+
+  return data;
+};

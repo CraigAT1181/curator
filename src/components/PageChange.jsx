@@ -14,17 +14,17 @@ export default function PageChange({ pageNumber, setPageNumber, totalPages }) {
   }
 
   return (
-    <div className="flex">
+    <div className="flex mt-4">
       <button
         className="page-button"
-        onClick={() => setPageNumber(pageNumber--)}
+        onClick={() => setPageNumber(pageNumber - 1)}
         disabled={firstPage}>
         -
       </button>
       <p className="page-number">{pageNumber}</p>
       <button
         className="page-button"
-        onClick={() => setPageNumber(pageNumber++)}
+        onClick={() => setPageNumber(pageNumber + 1)}
         disabled={lastPage}>
         +
       </button>

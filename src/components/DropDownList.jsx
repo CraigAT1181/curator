@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function DropdownList({ setMuseum, setPageNumber }) {
   const [clicked, setClicked] = useState(false);
@@ -14,13 +14,9 @@ export default function DropdownList({ setMuseum, setPageNumber }) {
         Select
       </button>
 
-      <div
-        id="dropdownMenu"
-        className={`absolute left-1/2 transform -translate-x-1/2 mt-3 w-48 bg-white border border-gray-200 rounded shadow-md ${
-          clicked ? "" : "hidden"
-        } z-50`}>
+      <div className={`dropdown-menu ${clicked ? "" : "hidden"}`}>
         <div
-          className="block cursor-pointer px-4 py-2 text-gray-800 hover:bg-gray-200"
+          className="dropdown-menu-item"
           onClick={() => {
             setMuseum("metropolitan");
             setPageNumber(1);
@@ -28,7 +24,7 @@ export default function DropdownList({ setMuseum, setPageNumber }) {
           Metropolitan Museum
         </div>
         <div
-          className="block cursor-pointer px-4 py-2 text-gray-800 hover:bg-gray-200"
+          className="dropdown-menu-item"
           onClick={() => setMuseum("fitzwilliam")}>
           Fitzwilliam Museum
         </div>

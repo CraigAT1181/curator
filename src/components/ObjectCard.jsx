@@ -7,7 +7,7 @@ export default function ObjectCard({ exhibit }) {
   return (
     <div
       className="card"
-      onClick={() => navigate("#")}>
+      onClick={() => navigate(`/exhibit/${exhibit.objectID}`)}>
       <div>
         {exhibit.image ? (
           <img

@@ -2,8 +2,10 @@ import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
+import ErrorPage from "./components/ErrorPage";
 
 const Home = lazy(() => import("./components/Home"));
+const ObjectPage = lazy(() => import("./components/ObjectPage"));
 
 export default function App() {
   return (
@@ -19,6 +21,14 @@ export default function App() {
             <Route
               path="/home"
               element={<Home />}
+            />
+            <Route
+              path="/exhibit/:objectID"
+              element={<ObjectPage />}
+            />
+            <Route
+              path="/*"
+              element={<ErrorPage />}
             />
           </Routes>
         </Suspense>

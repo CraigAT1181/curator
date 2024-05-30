@@ -1,14 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex-col px-16 pt-6">
       <div className="flex justify-center">
-        <h1 className="text-6xl md:text-8xl">Curator</h1>
+        <h1
+          className="title"
+          onClick={() => navigate("/")}>
+          Curator
+        </h1>
       </div>
 
       <div className="flex justify-center">
-        <button className="border border-gray-500 hover:bg-gray-700 hover:text-white rounded py-0 px-2 mt-2">
+        <button className="your-exhibits-button mt-4">
           Your Exhibit
         </button>
       </div>
