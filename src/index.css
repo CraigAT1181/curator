@@ -55,7 +55,7 @@
 /* ----  OBJECT CARD ---- */
 
 .card {
-  @apply bg-gray-100 rounded overflow-hidden shadow-md cursor-pointer relative;
+  @apply bg-gray-100 rounded overflow-hidden shadow-md h-full min-h-72 cursor-pointer relative md:max-w-60;
 }
 
 .badge {
