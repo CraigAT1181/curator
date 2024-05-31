@@ -15,7 +15,9 @@ export default function Header() {
       </div>
 
       <div className="flex justify-center">
-        <button className="your-exhibits-button mt-4">
+        <button
+          className="your-exhibits-button mt-4"
+          onClick={() => navigate("/your-exhibit")}>
           Your Exhibit
         </button>
       </div>

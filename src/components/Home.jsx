@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ExhibitDisplay from "./ExhibitDisplay";
-import PageChange from "./PageChange";
 import { getMetExhibits } from "../api/api";
+import ExhibitDisplay from "./ExhibitDisplay";
+import SearchExhibits from "./SearchExhibits";
+import PageChange from "./PageChange";
 import DropdownList from "./DropDownList";
 
 export default function Home() {
   const navigate = useNavigate();
   const [museum, setMuseum] = useState(null);
   const [exhibits, setExhibits] = useState([]);
+  const [searched, setSearched] = useState([]);
   const [totalPages, setTotalPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -71,10 +73,17 @@ export default function Home() {
         />
       </div>
 
+      <div className="md:flex justify-center">
+        {exhibits.length > 0 && <SearchExhibits setSearched={setSearched} />}
+      </div>
+
       <div>
         <div className="flex justify-center">
           {exhibits && exhibits.length > 0 && (
-            <ExhibitDisplay exhibits={exhibits} />
+            <ExhibitDisplay
+              exhibits={exhibits}
+              searched={searched}
+            />
           )}
         </div>
       </div>

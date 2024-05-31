@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function SearchExhibits(setSearchedExhibits) {
+export default function SearchExhibits(setSearched) {
   const [searchTerms, setSearchTerms] = useState("");
   const [notFound, setNotFound] = useState(false);
 
@@ -15,12 +15,11 @@ export default function SearchExhibits(setSearchedExhibits) {
   };
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={(e) => handleSearch(e)}>
-        <div>
+        <div className="w-full relative">
           <input
-            id="exhibit-search"
-            className="#"
+            className="search-input"
             value={searchTerms}
             onChange={(e) => handleInputChange(e)}
             type="text"
@@ -28,18 +27,16 @@ export default function SearchExhibits(setSearchedExhibits) {
             onBlur={(e) =>
               (e.target.placeholder = notFound
                 ? "Sorry, couldn't find that one. Try another."
-                : "Type key words here.")
+                : "Search exhibits.")
             }
             placeholder={
               notFound
                 ? "Sorry, couldn't find that one. Try another."
-                : "Type key words here."
+                : "Search exhibits."
             }
           />
-          <button
-            className=""
-            id="">
-            Search
+          <button className="search-button">
+            <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
       </form>
