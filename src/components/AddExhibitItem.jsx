@@ -6,7 +6,12 @@ export default function AddExhibitItem({ exhibit }) {
 
   const handleAddItem = () => {
     setUserExhibit((prevExhibit) => {
-      if (prevExhibit.some((item) => item.objectID === exhibit.objectID)) {
+      console.log('Previous Exhibit State:', prevExhibit);
+      if (
+        prevExhibit.some(
+          (item) => item.objectID === exhibit.objectID
+        )
+      ) {
         return prevExhibit;
       }
 
