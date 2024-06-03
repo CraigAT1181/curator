@@ -5,19 +5,23 @@ export default function ExhibitDisplay({ exhibits, searched }) {
   useEffect(() => {}, []);
 
   return (
-    
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {exhibits.length > 0
-          ? exhibits.map((exhibit) => {
-              return (
-                <ObjectCard
-                  key={exhibit.objectID}
-                  exhibit={exhibit}
-                />
-              );
-            })
-          : null}
-      </div>
-    
+    <div>
+      {exhibits.length > 0 ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {exhibits.map((exhibit) => {
+            return (
+              <ObjectCard
+                key={exhibit.objectID || exhibit.id}
+                exhibit={exhibit}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div>
+          <span>If available, museum exhibits will appear here.</span>
+        </div>
+      )}
+    </div>
   );
 }

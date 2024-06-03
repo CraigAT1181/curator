@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getMetExhibits } from "../api/api";
+import { getClevelandArtworks, getMetExhibits } from "../api/api";
 import ExhibitDisplay from "./ExhibitDisplay";
 import SearchExhibits from "./SearchExhibits";
 import PageChange from "./PageChange";
@@ -29,7 +29,18 @@ export default function Home() {
           setIsLoading(false);
           setError({ status, statusText });
         });
-    } else if (museum && museum === "fitzwilliam") {
+    } else if (museum && museum === "cleveland") {
+      setIsLoading(true);
+      getClevelandArtworks(pageNumber)
+        .then(({ artworks, total_pages }) => {
+          setIsLoading(false);
+          setExhibits(artworks);
+          setTotalPages(total_pages);
+        })
+        .catch(({ response: { status, statusText } }) => {
+          setIsLoading(false);
+          setError({ status, statusText });
+        });
     } else {
       setExhibits([]);
       setTotalPages(null);

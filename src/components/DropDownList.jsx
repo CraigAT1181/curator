@@ -25,8 +25,11 @@ export default function DropdownList({ setMuseum, setPageNumber }) {
         </div>
         <div
           className="dropdown-menu-item"
-          onClick={() => setMuseum("fitzwilliam")}>
-          Fitzwilliam Museum
+          onClick={() => {
+            setMuseum("cleveland");
+            setPageNumber(1);
+          }}>
+          Cleveland Museum
         </div>
       </div>
     </div>

@@ -17,3 +17,9 @@ export const getSingleObject = async (objectID) => {
 
   return data;
 };
+
+export const getClevelandArtworks = async (pageNumber) => {
+  const { data } = await api.get(`/cleveland_artworks?page=${pageNumber}`);
+
+  return data;
+};
