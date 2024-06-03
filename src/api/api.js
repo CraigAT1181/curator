@@ -23,3 +23,9 @@ export const getClevelandArtworks = async (pageNumber) => {
 
   return data;
 };
+
+export const GetSingleClevelandArtwork = async (objectID) => {
+  const { data } = await api.get(`/cleveland_artworks/${objectID}/artworks`);
+
+  return data;
+};
