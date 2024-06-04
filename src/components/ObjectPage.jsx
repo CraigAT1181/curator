@@ -82,6 +82,8 @@ export default function ObjectPage() {
         {exhibitObject.artistWiki && (
           <a
             href={exhibitObject.artistWiki}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-xs underline">
             Learn more about the artist.
           </a>
@@ -94,6 +96,8 @@ export default function ObjectPage() {
         {exhibitObject.objectWiki ? (
           <a
             href={exhibitObject.objectWiki}
+            target="_blank"
+            rel="noopener noreferrer"
             className="underline">
             Learn more about this item here.
           </a>

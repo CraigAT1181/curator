@@ -109,6 +109,8 @@ export default function ObjectPageCleveland() {
         {artwork.url ? (
           <a
             href={artwork.url}
+            target="_blank"
+            rel="noopener noreferrer"
             className="underline">
             Learn more about this artwork here.
           </a>
