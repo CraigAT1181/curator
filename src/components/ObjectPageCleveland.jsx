@@ -61,7 +61,7 @@ export default function ObjectPageCleveland() {
 
       <div>
         {artwork &&
-          (artwork.image.url ? (
+          (artwork.image?.url ? (
             <img
               src={artwork.image.url}
               alt="Artwork Image"

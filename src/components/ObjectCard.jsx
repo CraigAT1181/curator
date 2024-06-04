@@ -32,7 +32,7 @@ export default function ObjectCard({ exhibit }) {
 
   const renderClevelandExhibit = () => (
     <div>
-      {exhibit.image.url ? (
+      {exhibit.image?.url ? (
         <img
           src={exhibit.image.url}
           alt="Object Image"
