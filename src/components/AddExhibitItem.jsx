@@ -1,29 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSession } from "./SessionContext";
 
 export default function AddExhibitItem({ exhibit }) {
-  const { setUserExhibit } = useSession();
+  const { userExhibit, setUserExhibit } = useSession();
+  const [isInExhibit, setIsInExhibit] = useState(false);
+
+  useEffect(() => {
+    setIsInExhibit(
+      userExhibit.some((item) => item.objectID === exhibit.objectID)
+    );
+  }, [userExhibit, exhibit.objectID]);
 
   const handleAddItem = () => {
-    setUserExhibit((prevExhibit) => {
-      console.log('Previous Exhibit State:', prevExhibit);
-      if (
-        prevExhibit.some(
-          (item) => item.objectID === exhibit.objectID
-        )
-      ) {
-        return prevExhibit;
-      }
+    if (!isInExhibit) {
+      setUserExhibit((prevExhibit) => [...prevExhibit, exhibit]);
+    }
+  };
 
-      return [...prevExhibit, exhibit];
-    });
+  const handleRemoveItem = () => {
+    if (isInExhibit) {
+      setUserExhibit((prevExhibit) =>
+        prevExhibit.filter((item) => item.objectID !== exhibit.objectID)
+      );
+    }
   };
 
   return (
-    <div
-      className="badge"
-      title="Add to your exhibit">
-      <button onClick={() => handleAddItem()}>+</button>
+    <div>
+      {isInExhibit ? (
+        <div
+          className="badge"
+          title="Remove from your exhibit">
+          <button onClick={handleRemoveItem}>-</button>
+        </div>
+      ) : (
+        <div
+          className="badge"
+          title="Add to your exhibit">
+          <button onClick={handleAddItem}>+</button>
+        </div>
+      )}
     </div>
   );
 }
