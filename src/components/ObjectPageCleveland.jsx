@@ -116,9 +116,6 @@ export default function ObjectPageCleveland() {
           <p>Further information is not available for this artwork.</p>
         )}
       </div>
-      <div>
-        <button className="exhibit-object-button">Add to Your Exhibit</button>
-      </div>
     </div>
   );
 }

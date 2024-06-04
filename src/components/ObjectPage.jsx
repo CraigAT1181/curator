@@ -111,9 +111,6 @@ export default function ObjectPage() {
           <p>This item is currently not available to view in the gallery.</p>
         )}
       </div>
-      <div>
-        <button className="exhibit-object-button">Add to Your Exhibit</button>
-      </div>
     </div>
   );
 }
