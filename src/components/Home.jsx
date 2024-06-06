@@ -84,9 +84,16 @@ export default function Home() {
         />
       </div>
 
-      <div className="md:flex justify-center">
-        {exhibits.length > 0 && <SearchExhibits setSearched={setSearched} />}
-      </div>
+      {exhibits.length > 0 && (
+        <div className="md:flex justify-center">
+          <SearchExhibits
+            museum={museum}
+            setExhibits={setExhibits}
+            setIsLoading={setIsLoading}
+            setError={setError}
+          />
+        </div>
+      )}
 
       <div>
         <div className="flex justify-center">

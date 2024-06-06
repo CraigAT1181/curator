@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ObjectCard from "./ObjectCard";
 
-export default function ExhibitDisplay({ exhibits, searched }) {
-  useEffect(() => {}, []);
+export default function ExhibitDisplay({ exhibits }) {
 
   return (
     <div>

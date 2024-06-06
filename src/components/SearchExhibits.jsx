@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-export default function SearchExhibits(setSearched) {
+export default function SearchExhibits({
+  museum,
+  setExhibits,
+  setIsLoading,
+  setError,
+}) {
   const [searchTerms, setSearchTerms] = useState("");
   const [notFound, setNotFound] = useState(false);
 
@@ -11,7 +16,13 @@ export default function SearchExhibits(setSearched) {
   const handleSearch = (e) => {
     e.preventDefault();
 
-    // ADD LOGIC HERE
+    if (museum === "metropolitan") {
+      setIsLoading(true);
+      
+
+    } else if (museum === "cleveland") {
+      setIsLoading(true);
+    }
   };
 
   return (
@@ -27,12 +38,12 @@ export default function SearchExhibits(setSearched) {
             onBlur={(e) =>
               (e.target.placeholder = notFound
                 ? "Sorry, couldn't find that one. Try another."
-                : "Search exhibits.")
+                : "Search exhibits")
             }
             placeholder={
               notFound
                 ? "Sorry, couldn't find that one. Try another."
-                : "Search exhibits."
+                : "Search exhibits"
             }
           />
           <button className="search-button">
