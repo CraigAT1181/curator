@@ -1,50 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function SearchExhibits({
-  museum,
-  setExhibits,
-  setIsLoading,
-  setError,
+  searchTerms,
+  setSearchTerms,
+  setActiveSearch,
+  setSearchInitiated,
 }) {
-  const [searchTerms, setSearchTerms] = useState("");
-  const [notFound, setNotFound] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  let [userInput, setUserInput] = useState("");
 
   const handleInputChange = (e) => {
-    setSearchTerms(e.target.value);
+    const value = e.target.value;
+    setUserInput(value);
+
+    const sanitizedInput = value.replace(/[^\w\s]/g, " ");
+
+    const keywordArray = sanitizedInput
+      .split(" ")
+      .filter((word) => word.trim() !== "");
+    const joinedString = keywordArray.join(" ");
+
+    setSearchTerms(joinedString);
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
 
-    if (museum === "metropolitan") {
-      setIsLoading(true);
-      
-
-    } else if (museum === "cleveland") {
-      setIsLoading(true);
+    if (searchTerms) {
+      setActiveSearch(true);
+      setSearchInitiated(true);
+    } else if (searchTerms === "") {
+      setErrorMessage("Search cannot be blank.");
     }
   };
 
   return (
     <div className="container">
-      <form onSubmit={(e) => handleSearch(e)}>
+      <form onSubmit={handleSearch}>
         <div className="w-full relative">
           <input
-            className="search-input"
-            value={searchTerms}
-            onChange={(e) => handleInputChange(e)}
+            className={`search-input ${errorMessage ? "input-error" : ""}`}
+            value={userInput}
+            onChange={handleInputChange}
             type="text"
+            placeholder="Search exhibits"
             onFocus={(e) => (e.target.placeholder = "")}
-            onBlur={(e) =>
-              (e.target.placeholder = notFound
-                ? "Sorry, couldn't find that one. Try another."
-                : "Search exhibits")
-            }
-            placeholder={
-              notFound
-                ? "Sorry, couldn't find that one. Try another."
-                : "Search exhibits"
-            }
           />
           <button className="search-button">
             <i className="fa-solid fa-magnifying-glass"></i>

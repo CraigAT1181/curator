@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function DropdownList({ setMuseum, setPageNumber }) {
+export default function DropdownList({ setMuseum, setPageNumber, setActiveSearch }) {
   const [clicked, setClicked] = useState(false);
 
   return (
@@ -20,6 +20,7 @@ export default function DropdownList({ setMuseum, setPageNumber }) {
           onClick={() => {
             setMuseum("metropolitan");
             setPageNumber(1);
+            setActiveSearch(false);
           }}>
           Metropolitan Museum
         </div>
@@ -28,6 +29,7 @@ export default function DropdownList({ setMuseum, setPageNumber }) {
           onClick={() => {
             setMuseum("cleveland");
             setPageNumber(1);
+            setActiveSearch(false);
           }}>
           Cleveland Museum
         </div>

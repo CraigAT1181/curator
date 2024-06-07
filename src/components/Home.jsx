@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getClevelandArtworks, getMetExhibits } from "../api/api";
+import {
+  getClevelandArtworks,
+  getMetExhibits,
+  searchClevelandArtworks,
+  searchMetExhibits,
+} from "../api/api";
+
 import ExhibitDisplay from "./ExhibitDisplay";
 import SearchExhibits from "./SearchExhibits";
 import PageChange from "./PageChange";
@@ -10,32 +16,41 @@ export default function Home() {
   const navigate = useNavigate();
   const [museum, setMuseum] = useState(null);
   const [exhibits, setExhibits] = useState([]);
-  const [searched, setSearched] = useState([]);
+  const [searchTerms, setSearchTerms] = useState("");
+  const [activeSearch, setActiveSearch] = useState(false);
+  const [searchInitiated, setSearchInitiated] = useState(false);
   const [totalPages, setTotalPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (museum && museum === "metropolitan") {
+    if (museum) {
       setIsLoading(true);
-      getMetExhibits(pageNumber)
-        .then(({ exhibits, total_pages }) => {
+
+      const fetchData = () => {
+        if (!activeSearch) {
+          if (museum === "metropolitan") {
+            return getMetExhibits(pageNumber);
+          } else if (museum === "cleveland") {
+            return getClevelandArtworks(pageNumber);
+          }
+        } else {
+          const keywords = searchTerms.toLowerCase();
+          if (museum === "metropolitan") {
+            return searchMetExhibits(pageNumber, keywords);
+          } else if (museum === "cleveland") {
+            return searchClevelandArtworks(pageNumber, keywords);
+          }
+        }
+      };
+
+      fetchData()
+        .then(({ exhibits, artworks, total_pages }) => {
           setIsLoading(false);
-          setExhibits(exhibits);
+          setExhibits(exhibits || artworks);
           setTotalPages(total_pages);
-        })
-        .catch(({ response: { status, statusText } }) => {
-          setIsLoading(false);
-          setError({ status, statusText });
-        });
-    } else if (museum && museum === "cleveland") {
-      setIsLoading(true);
-      getClevelandArtworks(pageNumber)
-        .then(({ artworks, total_pages }) => {
-          setIsLoading(false);
-          setExhibits(artworks);
-          setTotalPages(total_pages);
+          setSearchInitiated(false);
         })
         .catch(({ response: { status, statusText } }) => {
           setIsLoading(false);
@@ -45,7 +60,7 @@ export default function Home() {
       setExhibits([]);
       setTotalPages(null);
     }
-  }, [museum, pageNumber]);
+  }, [museum, pageNumber, activeSearch, searchInitiated]);
 
   if (isLoading) {
     return (
@@ -81,16 +96,17 @@ export default function Home() {
         <DropdownList
           setMuseum={setMuseum}
           setPageNumber={setPageNumber}
+          setActiveSearch={setActiveSearch}
         />
       </div>
 
       {exhibits.length > 0 && (
         <div className="md:flex justify-center">
           <SearchExhibits
-            museum={museum}
-            setExhibits={setExhibits}
-            setIsLoading={setIsLoading}
-            setError={setError}
+            searchTerms={searchTerms}
+            setSearchTerms={setSearchTerms}
+            setActiveSearch={setActiveSearch}
+            setSearchInitiated={setSearchInitiated}
           />
         </div>
       )}
@@ -98,10 +114,7 @@ export default function Home() {
       <div>
         <div className="flex justify-center">
           {exhibits && exhibits.length > 0 && (
-            <ExhibitDisplay
-              exhibits={exhibits}
-              searched={searched}
-            />
+            <ExhibitDisplay exhibits={exhibits} />
           )}
         </div>
       </div>
