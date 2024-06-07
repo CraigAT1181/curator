@@ -5,6 +5,7 @@ export default function SearchExhibits({
   setSearchTerms,
   setActiveSearch,
   setSearchInitiated,
+  setPageNumber,
 }) {
   const [errorMessage, setErrorMessage] = useState("");
   let [userInput, setUserInput] = useState("");
@@ -29,6 +30,7 @@ export default function SearchExhibits({
     if (searchTerms) {
       setActiveSearch(true);
       setSearchInitiated(true);
+      setPageNumber(1);
     } else if (searchTerms === "") {
       setErrorMessage("Search cannot be blank.");
     }
@@ -47,7 +49,7 @@ export default function SearchExhibits({
             onFocus={(e) => (e.target.placeholder = "")}
           />
           <button className="search-button">
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-solid fa-magnifying-glass" aria-label="search button" title="search button"></i>
           </button>
         </div>
       </form>

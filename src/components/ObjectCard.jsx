@@ -23,7 +23,7 @@ export default function ObjectCard({ exhibit }) {
         />
       )}
       <div className="m-4 flex flex-col">
-        <h4 className="font-bold">{exhibit.title}</h4>
+        <h2 className="font-bold">{exhibit.title}</h2>
         <p>{exhibit.date}</p>
         <p>{exhibit.artist}</p>
       </div>
@@ -48,7 +48,7 @@ export default function ObjectCard({ exhibit }) {
         />
       )}
       <div className="m-4 flex flex-col">
-        <h4 className="font-bold">{exhibit.title}</h4>
+        <h2 className="font-bold">{exhibit.title}</h2>
         <p>{exhibit.date}</p>
         <p>{exhibit.creators[0]}</p>
       </div>

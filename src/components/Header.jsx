@@ -6,13 +6,13 @@ export default function Header() {
 
   return (
     <div className="flex-col px-16 pt-6">
-      <div className="flex justify-center">
+      <header className="flex justify-center">
         <h1
           className="title"
           onClick={() => navigate("/")}>
           Curator
         </h1>
-      </div>
+      </header>
 
       <div className="flex justify-center">
         <button

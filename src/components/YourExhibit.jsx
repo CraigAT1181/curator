@@ -14,7 +14,7 @@ export default function YourExhibit() {
       </div>
       {userExhibit.length === 0 && (
         <div className="flex text-center h-80 items-center md:justify-center">
-          <h4>Exhibits you add will appear here.</h4>
+          <h2>Exhibits you add will appear here.</h2>
         </div>
       )}
 

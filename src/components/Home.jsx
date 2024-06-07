@@ -107,15 +107,16 @@ export default function Home() {
             setSearchTerms={setSearchTerms}
             setActiveSearch={setActiveSearch}
             setSearchInitiated={setSearchInitiated}
+            setPageNumber={setPageNumber}
           />
         </div>
       )}
 
       <div>
         <div className="flex justify-center">
-          {exhibits && exhibits.length > 0 && (
-            <ExhibitDisplay exhibits={exhibits} />
-          )}
+          
+            <ExhibitDisplay exhibits={exhibits} pageTotal={pageTotal}/>
+          
         </div>
       </div>
 
