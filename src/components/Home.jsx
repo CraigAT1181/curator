@@ -19,7 +19,7 @@ export default function Home() {
   const [searchTerms, setSearchTerms] = useState("");
   const [activeSearch, setActiveSearch] = useState(false);
   const [searchInitiated, setSearchInitiated] = useState(false);
-  const [totalPages, setTotalPages] = useState(null);
+  const [pageTotal, setPageTotal] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -49,7 +49,7 @@ export default function Home() {
         .then(({ exhibits, artworks, total_pages }) => {
           setIsLoading(false);
           setExhibits(exhibits || artworks);
-          setTotalPages(total_pages);
+          setPageTotal(total_pages);
           setSearchInitiated(false);
         })
         .catch(({ response: { status, statusText } }) => {
@@ -58,7 +58,7 @@ export default function Home() {
         });
     } else {
       setExhibits([]);
-      setTotalPages(null);
+      setPageTotal(null);
     }
   }, [museum, pageNumber, activeSearch, searchInitiated]);
 
@@ -124,7 +124,7 @@ export default function Home() {
           <PageChange
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
-            totalPages={totalPages}
+            pageTotal={pageTotal}
           />
         )}
       </div>

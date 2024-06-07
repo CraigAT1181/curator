@@ -83,11 +83,13 @@ export default function ObjectPageCleveland() {
       </div>
       <div>{artwork.creation_date}</div>
       <div>{artwork.description}</div>
-      <div>
-        <p className="font-semibold">Did you know?</p>
+      {artwork.did_you_know && (
+        <div>
+          <p className="font-semibold">Did you know?</p>
 
-        {artwork.did_you_know}
-      </div>
+          {artwork.did_you_know}
+        </div>
+      )}
 
       <div>
         <p>
