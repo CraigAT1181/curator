@@ -4,7 +4,7 @@
 
 Thanks for your interest in Curator.
 
-This web application allows users to explore museum exhibits or artworks, and store them for the duration of their session.
+This web application allows users to explore museum exhibits or artworks, store them in a collection for the duration of their session, and provides a link to view further information about particular items.
 
 ## Important Links
 
@@ -30,14 +30,12 @@ Visit the hosted site: https://lp-curator.netlify.app/
 
 ## Running Locally
 
-1. Clone the repo from Github
+1. Create a folder on your computer where you would like to store the app files locally. Then,
 
-`git clone https://github.com/CraigAT1181/curator.git`
+2. Initialise the folder by typing `git init` in the terminal. Next,
 
-2. Access the local repo cloned from Github
+3. Clone the repo from Github by typing `git clone https://github.com/CraigAT1181/curator.git` in the terminal.
 
-`cd [your_folder_name]`
+4. Access the local repo, cloned from Github, by typing `cd [your_folder_name]`. Finally,
 
-3. Run the following command, then click the link to the localhost:5173
-
-`npm run dev`
+5. Type `npm run dev` in the terminal and ctrl + click the link to the localhost:5173.
