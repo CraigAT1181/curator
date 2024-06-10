@@ -55,7 +55,7 @@ export default function ObjectPage() {
 
   return (
     <div className="grid gap-3">
-      <div className="flex justify-end">
+      <div className="flex justify-end mb-2">
         <button onClick={() => navigate(-1)}>Back</button>
       </div>
       <div>

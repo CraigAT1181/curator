@@ -9,7 +9,7 @@ export default function YourExhibit() {
 
   return (
     <div>
-      <div className="flex justify-end">
+      <div className="flex justify-end mb-4">
         <button onClick={() => navigate(-1)}>Back</button>
       </div>
       {userExhibit.length === 0 && (
@@ -18,7 +18,7 @@ export default function YourExhibit() {
         </div>
       )}
 
-      <div className="flex justify-center">
+      <div className="">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {userExhibit.length > 0
             ? userExhibit.map((exhibit) => {

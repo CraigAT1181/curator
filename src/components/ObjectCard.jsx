@@ -30,7 +30,7 @@ export default function ObjectCard({ exhibit }) {
     </div>
   );
 
-  const renderClevelandExhibit = () => (
+  const renderClevelandArtworks = () => (
     <div>
       {exhibit.image?.url ? (
         <img
@@ -59,7 +59,7 @@ export default function ObjectCard({ exhibit }) {
     if (exhibit.museum === "metropolitan") {
       return renderMetropolitanExhibit();
     } else if (exhibit.museum === "cleveland") {
-      return renderClevelandExhibit();
+      return renderClevelandArtworks();
     } else {
       return null;
     }

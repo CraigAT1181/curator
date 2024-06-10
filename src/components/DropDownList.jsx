@@ -7,12 +7,28 @@ export default function DropdownList({
 }) {
   const [clicked, setClicked] = useState(false);
 
-
+  const handleButtonClick = () => {
+    setClicked(!clicked);
+  };
 
   const handleKeyDown = (e) => {
     if (e.key === "Escape") {
       setClicked(false);
     }
+  };
+
+  const handleMetClick = () => {
+    setMuseum("metropolitan");
+    setPageNumber(1);
+    setActiveSearch(false);
+    setClicked(false);
+  };
+
+  const handleClevelandClick = () => {
+    setMuseum("cleveland");
+    setPageNumber(1);
+    setActiveSearch(false);
+    setClicked(false);
   };
 
   return (
@@ -22,7 +38,7 @@ export default function DropdownList({
       </div>
       <button
         className="dropdown"
-        onClick={() => setClicked(!clicked)}
+        onClick={handleButtonClick}
         onKeyDown={handleKeyDown}
         aria-haspopup="true"
         aria-expanded={clicked}>
@@ -32,22 +48,12 @@ export default function DropdownList({
       <div className={`dropdown-menu ${clicked ? "" : "hidden"}`}>
         <button
           className="dropdown-menu-item"
-          onClick={() => {
-            setMuseum("metropolitan");
-            setPageNumber(1);
-            setActiveSearch(false);
-            setClicked(false);
-          }}>
+          onClick={handleMetClick}>
           Metropolitan Museum
         </button>
         <button
           className="dropdown-menu-item"
-          onClick={() => {
-            setMuseum("cleveland");
-            setPageNumber(1);
-            setActiveSearch(false);
-            setClicked(false);
-          }}>
+          onClick={handleClevelandClick}>
           Cleveland Museum
         </button>
       </div>

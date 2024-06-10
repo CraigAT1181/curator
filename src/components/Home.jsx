@@ -113,14 +113,15 @@ export default function Home() {
       )}
 
       <div>
-        <div className="flex justify-center">
-          
-            <ExhibitDisplay exhibits={exhibits} pageTotal={pageTotal}/>
-          
+        <div>
+          <ExhibitDisplay
+            exhibits={exhibits}
+            pageTotal={pageTotal}
+          />
         </div>
       </div>
 
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-2">
         {exhibits.length > 0 && (
           <PageChange
             pageNumber={pageNumber}

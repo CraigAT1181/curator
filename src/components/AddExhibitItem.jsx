@@ -29,13 +29,13 @@ export default function AddExhibitItem({ exhibit }) {
     <div>
       {isInExhibit ? (
         <div
-          className="badge"
+          className="badge-clicked"
           title="Remove from your exhibit">
           <button onClick={handleRemoveItem}>-</button>
         </div>
       ) : (
         <div
-          className="badge"
+          className="badge-unclicked"
           title="Add to your exhibit">
           <button onClick={handleAddItem}>+</button>
         </div>
