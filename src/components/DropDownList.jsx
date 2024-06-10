@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 
-export default function DropdownList({ setMuseum, setPageNumber, setActiveSearch }) {
+export default function DropdownList({
+  setMuseum,
+  setPageNumber,
+  setActiveSearch,
+}) {
   const [clicked, setClicked] = useState(false);
+
+
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+      setClicked(false);
+    }
+  };
 
   return (
     <div className="relative">
@@ -10,29 +22,34 @@ export default function DropdownList({ setMuseum, setPageNumber, setActiveSearch
       </div>
       <button
         className="dropdown"
-        onClick={() => setClicked(!clicked)}>
+        onClick={() => setClicked(!clicked)}
+        onKeyDown={handleKeyDown}
+        aria-haspopup="true"
+        aria-expanded={clicked}>
         Select
       </button>
 
       <div className={`dropdown-menu ${clicked ? "" : "hidden"}`}>
-        <div
+        <button
           className="dropdown-menu-item"
           onClick={() => {
             setMuseum("metropolitan");
             setPageNumber(1);
             setActiveSearch(false);
+            setClicked(false);
           }}>
           Metropolitan Museum
-        </div>
-        <div
+        </button>
+        <button
           className="dropdown-menu-item"
           onClick={() => {
             setMuseum("cleveland");
             setPageNumber(1);
             setActiveSearch(false);
+            setClicked(false);
           }}>
           Cleveland Museum
-        </div>
+        </button>
       </div>
     </div>
   );
