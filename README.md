@@ -4,11 +4,11 @@
 
 Thanks for your interest in Curator.
 
-This web application allows users to explore museum exhibits or artworks, and store them for the duration of their session. Each particular object can be clicked on to see further detaild information, and a button click allows them to save the piece in their own collection, or remove it again.
+This web application allows users to explore museum exhibits or artworks, and store them for the duration of their session.
 
 ## Important Links
 
-Visit the hosted site: [ADD LINK HERE!]
+Visit the hosted site: https://lp-curator.netlify.app/
 
 ## Instructions
 
