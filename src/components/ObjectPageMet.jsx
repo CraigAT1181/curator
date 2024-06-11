@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getSingleObject } from "../api/api";
 
-export default function ObjectPage() {
+export default function ObjectPageMet() {
   const { objectID } = useParams();
 
   const navigate = useNavigate();

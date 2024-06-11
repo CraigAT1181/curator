@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import ErrorPage from "./components/ErrorPage";
 
 const Home = lazy(() => import("./components/Home"));
-const ObjectPage = lazy(() => import("./components/ObjectPage"));
+const ObjectPageMet = lazy(() => import("./components/ObjectPageMet"));
 const ObjectPageCleveland = lazy(() => import("./components/ObjectPageCleveland"));
 const YourExhibit = lazy(() => import("./components/YourExhibit"));
 
@@ -28,7 +28,7 @@ export default function App() {
               />
               <Route
                 path="/met-exhibits/:objectID"
-                element={<ObjectPage />}
+                element={<ObjectPageMet />}
               />
               <Route
                 path="/cleveland-artworks/:objectID"
