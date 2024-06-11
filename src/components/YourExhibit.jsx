@@ -23,7 +23,7 @@ export default function YourExhibit() {
       )}
 
       <div className="">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
           {userExhibit.length > 0
             ? userExhibit.map((exhibit) => {
                 return (

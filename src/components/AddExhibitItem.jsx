@@ -4,7 +4,6 @@ import { useSession } from "./SessionContext";
 export default function AddExhibitItem({ exhibit }) {
   const { userExhibit, setUserExhibit } = useSession();
   const [isInExhibit, setIsInExhibit] = useState(false);
-  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     setIsInExhibit(
@@ -15,7 +14,6 @@ export default function AddExhibitItem({ exhibit }) {
   const handleAddItem = () => {
     if (!isInExhibit) {
       setUserExhibit((prevExhibit) => [...prevExhibit, exhibit]);
-      setClicked(true)
     }
   };
 
@@ -24,7 +22,6 @@ export default function AddExhibitItem({ exhibit }) {
       setUserExhibit((prevExhibit) =>
         prevExhibit.filter((item) => item.objectID !== exhibit.objectID)
       );
-      setClicked(false)
     }
   };
 

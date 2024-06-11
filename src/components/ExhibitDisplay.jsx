@@ -5,7 +5,7 @@ export default function ExhibitDisplay({ exhibits, pageTotal }) {
   return (
     <div>
       {exhibits && exhibits.length > 0 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
           {exhibits.map((exhibit) => {
             return (
               <ObjectCard
