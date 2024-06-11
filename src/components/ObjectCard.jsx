@@ -25,7 +25,11 @@ export default function ObjectCard({ exhibit }) {
       <div className="m-4 flex flex-col">
         <h2 className="font-bold">{exhibit.title}</h2>
         <p>Dated: {exhibit.date}</p>
-        {exhibit.artist ? <p>Artist: {exhibit.artist}</p> : <p>Department: {exhibit.department}</p>}
+        {exhibit.artist ? (
+          <p>Artist: {exhibit.artist}</p>
+        ) : exhibit.department ? (
+          <p>Department: {exhibit.department}</p>
+        ) : null}
       </div>
     </div>
   );
