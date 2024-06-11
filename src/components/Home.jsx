@@ -38,9 +38,9 @@ export default function Home() {
         } else {
           const keywords = searchTerms.toLowerCase();
           if (museum === "metropolitan") {
-            return searchMetExhibits(pageNumber, keywords);
+            return searchMetExhibits(keywords, pageNumber);
           } else if (museum === "cleveland") {
-            return searchClevelandArtworks(pageNumber, keywords);
+            return searchClevelandArtworks(keywords, pageNumber);
           }
         }
       };

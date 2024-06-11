@@ -18,7 +18,6 @@ export default function ObjectPage() {
       .then((object) => {
         setIsLoading(false);
         setExhibitObject(object);
-        console.log(object);
       })
       .catch(({ response: { status, statusText } }) => {
         setIsLoading(false);

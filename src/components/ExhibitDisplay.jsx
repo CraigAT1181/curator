@@ -2,7 +2,6 @@ import React from "react";
 import ObjectCard from "./ObjectCard";
 
 export default function ExhibitDisplay({ exhibits, pageTotal }) {
-  console.log(exhibits);
   return (
     <div>
       {exhibits && exhibits.length > 0 && (
@@ -19,7 +18,7 @@ export default function ExhibitDisplay({ exhibits, pageTotal }) {
       )}
 
       {pageTotal === 0 && (
-        <div className="text-center">
+        <div className="text-center mt-10">
           <span>If available, museum exhibits will appear here.</span>
         </div>
       )}

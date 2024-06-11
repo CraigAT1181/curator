@@ -18,10 +18,11 @@ export const getSingleObject = async (objectID) => {
   return data;
 };
 
-export const searchMetExhibits = async (pageNumber, keywords) => {
-  const { data } = await api.get(`/met_exhibits/search?page=${pageNumber}`, {
+export const searchMetExhibits = async (keywords, pageNumber) => {
+  const { data } = await api.get("/met_exhibits/search", {
     params: {
       keywords: keywords,
+      page: pageNumber,
     },
   });
 
@@ -40,15 +41,13 @@ export const GetSingleClevelandArtwork = async (objectID) => {
   return data;
 };
 
-export const searchClevelandArtworks = async (pageNumber, keywords) => {
-  const { data } = await api.get(
-    `/cleveland_artworks/search?page=${pageNumber}`,
-    {
-      params: {
-        keywords: keywords,
-      },
-    }
-  );
+export const searchClevelandArtworks = async (keywords, pageNumber) => {
+  const { data } = await api.get("/cleveland_artworks/search", {
+    params: {
+      keywords: keywords,
+      page: pageNumber,
+    },
+  });
 
   return data;
 };
