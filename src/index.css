@@ -58,12 +58,12 @@
   @apply bg-gray-100 rounded overflow-hidden shadow-md h-full min-w-full min-h-72 cursor-pointer relative md:max-w-60;
 }
 
-.badge-unclicked {
-  @apply bg-white hover:bg-gray-500 hover:text-white hover:border border border-gray-500 text-xl text-gray-500 rounded-full min-w-7 max-w-7 text-center font-bold p-2 right-2 top-0 mr-2 mt-2 absolute;
+.badge-clicked {
+  @apply bg-gray-500 text-white hover:bg-white hover:text-gray-500 hover:border border border-gray-500 text-2xl rounded-full min-w-7 max-w-7 text-center font-bold p-1 right-2 top-2 absolute;
 }
 
-.badge-clicked {
-  @apply bg-gray-500 hover:bg-white hover:text-gray-500 hover:border text-xl text-white border border-white rounded-full min-w-7 max-w-7 text-center font-bold p-2 right-2 top-0 mr-2 mt-2 absolute;
+.badge-unclicked {
+  @apply bg-white hover:bg-gray-500 hover:text-white hover:border border border-gray-500 text-2xl text-gray-500 rounded-full min-w-7 max-w-7 text-center font-bold p-1 right-2 top-2 absolute;
 }
 
 .missing-image {
