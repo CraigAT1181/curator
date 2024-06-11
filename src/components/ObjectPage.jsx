@@ -18,6 +18,7 @@ export default function ObjectPage() {
       .then((object) => {
         setIsLoading(false);
         setExhibitObject(object);
+        console.log(object);
       })
       .catch(({ response: { status, statusText } }) => {
         setIsLoading(false);
@@ -78,7 +79,12 @@ export default function ObjectPage() {
         <h1 className="text-2xl">{exhibitObject.title}</h1>
       </div>
       <div>
-        <p className="text-lg">{exhibitObject.artist}</p>
+        {exhibitObject.artist ? (
+          <p className="text-lg">Artist: {exhibitObject.artist}</p>
+        ) : (
+          <p>Artist: Not provided</p>
+        )}
+
         {exhibitObject.artistWiki && (
           <a
             href={exhibitObject.artistWiki}
@@ -89,8 +95,17 @@ export default function ObjectPage() {
           </a>
         )}
       </div>
+
+      {exhibitObject.city ? <p>Created in {exhibitObject.city}</p> : null}
+
       <div>
-        <p>{exhibitObject.date}</p>
+        <p>Dated: {exhibitObject.date}</p>
+      </div>
+      <div>
+        <p>{exhibitObject.period}</p>
+      </div>
+      <div>
+        <p>Department: {exhibitObject.department}</p>
       </div>
       <div>
         {exhibitObject.objectWiki ? (

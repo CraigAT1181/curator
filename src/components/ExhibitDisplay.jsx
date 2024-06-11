@@ -2,6 +2,7 @@ import React from "react";
 import ObjectCard from "./ObjectCard";
 
 export default function ExhibitDisplay({ exhibits, pageTotal }) {
+  console.log(exhibits);
   return (
     <div>
       {exhibits && exhibits.length > 0 && (
