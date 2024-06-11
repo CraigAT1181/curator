@@ -56,7 +56,11 @@ export default function ObjectPageCleveland() {
   return (
     <div className="grid gap-3">
       <div className="flex justify-end mb-2">
-        <button onClick={() => navigate(-1)}>Back</button>
+        <button
+          title="Back button"
+          onClick={() => navigate(-1)}>
+          <i className="fa-solid fa-arrow-left"></i>
+        </button>
       </div>
 
       <div>

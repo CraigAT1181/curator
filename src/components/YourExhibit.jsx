@@ -10,7 +10,11 @@ export default function YourExhibit() {
   return (
     <div>
       <div className="flex justify-end mb-4">
-        <button onClick={() => navigate(-1)}>Back</button>
+        <button
+          title="Back button"
+          onClick={() => navigate(-1)}>
+          <i className="fa-solid fa-arrow-left"></i>
+        </button>
       </div>
       {userExhibit.length === 0 && (
         <div className="flex text-center h-80 items-center md:justify-center">
