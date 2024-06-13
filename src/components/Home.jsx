@@ -11,16 +11,22 @@ import ExhibitDisplay from "./ExhibitDisplay";
 import SearchExhibits from "./SearchExhibits";
 import PageChange from "./PageChange";
 import DropdownList from "./DropDownList";
+import { useSession } from "./SessionContext";
 
 export default function Home() {
   const navigate = useNavigate();
-  const [museum, setMuseum] = useState(null);
-  const [exhibits, setExhibits] = useState([]);
-  const [searchTerms, setSearchTerms] = useState("");
-  const [activeSearch, setActiveSearch] = useState(false);
+  const {
+    museum,
+    exhibits,
+    setExhibits,
+    searchTerms,
+    activeSearch,
+    pageNumber
+    
+  } = useSession();
+  const [lastSearch, setLastSearch] = useState("");
   const [searchInitiated, setSearchInitiated] = useState(false);
   const [pageTotal, setPageTotal] = useState(null);
-  const [pageNumber, setPageNumber] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -93,42 +99,33 @@ export default function Home() {
   return (
     <div>
       <div className="flex justify-center">
-        <DropdownList
-          setMuseum={setMuseum}
-          setPageNumber={setPageNumber}
-          setActiveSearch={setActiveSearch}
-        />
+        <DropdownList />
       </div>
 
       {exhibits.length > 0 && (
         <div className="md:flex justify-center">
-          <SearchExhibits
-            searchTerms={searchTerms}
-            setSearchTerms={setSearchTerms}
-            setActiveSearch={setActiveSearch}
-            setSearchInitiated={setSearchInitiated}
-            setPageNumber={setPageNumber}
-          />
+          <SearchExhibits setSearchInitiated={setSearchInitiated} setLastSearch={setLastSearch} />
+        </div>
+      )}
+
+      {exhibits && activeSearch && (
+        <div className="flex justify-center mb-2">
+          <div>
+            <p className="font-semibold text-center">
+              Search results for "{lastSearch}"
+            </p>
+          </div>
         </div>
       )}
 
       <div>
         <div>
-          <ExhibitDisplay
-            exhibits={exhibits}
-            pageTotal={pageTotal}
-          />
+          <ExhibitDisplay pageTotal={pageTotal} />
         </div>
       </div>
 
       <div className="flex justify-center mt-2">
-        {exhibits.length > 0 && (
-          <PageChange
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-            pageTotal={pageTotal}
-          />
-        )}
+        {exhibits.length > 0 && <PageChange pageTotal={pageTotal} />}
       </div>
     </div>
   );

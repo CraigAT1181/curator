@@ -1,7 +1,10 @@
 import React from "react";
+import { useSession } from "./SessionContext";
 import ObjectCard from "./ObjectCard";
 
-export default function ExhibitDisplay({ exhibits, pageTotal }) {
+export default function ExhibitDisplay({ pageTotal }) {
+  const { exhibits } = useSession();
+
   return (
     <div>
       {exhibits && exhibits.length > 0 && (

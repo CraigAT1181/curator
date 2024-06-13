@@ -1,6 +1,9 @@
 import React from "react";
+import { useSession } from "./SessionContext";
 
-export default function PageChange({ pageNumber, setPageNumber, pageTotal }) {
+export default function PageChange({ pageTotal }) {
+  const { pageNumber, setPageNumber } = useSession();
+
   const firstPage = pageNumber === 1;
   const lastPage = pageNumber === pageTotal;
 
@@ -12,7 +15,10 @@ export default function PageChange({ pageNumber, setPageNumber, pageTotal }) {
         disabled={firstPage}>
         -
       </button>
-      <p className="page-number">{pageNumber} <span className="font-extralight mx-2">of</span> {pageTotal}</p>
+      <p className="page-number">
+        {pageNumber} <span className="font-extralight mx-2">of</span>{" "}
+        {pageTotal}
+      </p>
       <button
         className="page-button"
         onClick={() => setPageNumber(pageNumber + 1)}

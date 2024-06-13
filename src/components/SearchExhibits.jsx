@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useSession } from "./SessionContext";
 
-export default function SearchExhibits({
-  searchTerms,
-  setSearchTerms,
-  setActiveSearch,
-  setSearchInitiated,
-  setPageNumber,
-}) {
+export default function SearchExhibits({ setSearchInitiated, setLastSearch }) {
   const [errorMessage, setErrorMessage] = useState("");
   let [userInput, setUserInput] = useState("");
+  const { searchTerms, setSearchTerms, setActiveSearch, setPageNumber } =
+    useSession();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -31,6 +28,7 @@ export default function SearchExhibits({
       setActiveSearch(true);
       setSearchInitiated(true);
       setPageNumber(1);
+      setLastSearch(searchTerms);
     } else if (searchTerms === "") {
       setErrorMessage("Search cannot be blank.");
     }
@@ -49,7 +47,10 @@ export default function SearchExhibits({
             onFocus={(e) => (e.target.placeholder = "")}
           />
           <button className="search-button">
-            <i className="fa-solid fa-magnifying-glass" aria-label="search button" title="search button"></i>
+            <i
+              className="fa-solid fa-magnifying-glass"
+              aria-label="search button"
+              title="search button"></i>
           </button>
         </div>
       </form>

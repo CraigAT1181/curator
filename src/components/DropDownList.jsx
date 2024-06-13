@@ -1,11 +1,9 @@
 import React, { useState } from "react";
+import { useSession } from "./SessionContext";
 
-export default function DropdownList({
-  setMuseum,
-  setPageNumber,
-  setActiveSearch,
-}) {
+export default function DropdownList() {
   const [clicked, setClicked] = useState(false);
+  const { setMuseum, setPageNumber, setActiveSearch } = useSession();
 
   const handleButtonClick = () => {
     setClicked(!clicked);

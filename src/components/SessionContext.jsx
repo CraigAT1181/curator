@@ -4,9 +4,28 @@ const SessionContext = createContext();
 
 export function SessionProvider({ children }) {
   const [userExhibit, setUserExhibit] = useState([]);
+  const [museum, setMuseum] = useState(null);
+  const [exhibits, setExhibits] = useState([]);
+  const [searchTerms, setSearchTerms] = useState("");
+  const [activeSearch, setActiveSearch] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
 
   return (
-    <SessionContext.Provider value={{ userExhibit, setUserExhibit }}>
+    <SessionContext.Provider
+      value={{
+        userExhibit,
+        setUserExhibit,
+        museum,
+        setMuseum,
+        exhibits,
+        setExhibits,
+        searchTerms,
+        setSearchTerms,
+        activeSearch,
+        setActiveSearch,
+        pageNumber,
+        setPageNumber
+      }}>
       {children}
     </SessionContext.Provider>
   );
