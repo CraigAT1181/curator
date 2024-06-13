@@ -5,6 +5,7 @@ import { getSingleObject } from "../api/api";
 import AddExhibitItem from "./AddExhibitItem";
 
 export default function ObjectPageMet() {
+  // Read the objectID from the URL
   const { objectID } = useParams();
 
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ export default function ObjectPageMet() {
 
   useEffect(() => {
     setIsLoading(true);
+
+    // Pass the objectID to the backend to fetch a particular exhibit
     getSingleObject(objectID)
       .then((object) => {
         setIsLoading(false);

@@ -4,6 +4,7 @@ import { useSession } from "./SessionContext";
 export default function PageChange({ pageTotal }) {
   const { pageNumber, setPageNumber } = useSession();
 
+  // Establish first and last pages
   const firstPage = pageNumber === 1;
   const lastPage = pageNumber === pageTotal;
 

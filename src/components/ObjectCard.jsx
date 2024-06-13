@@ -5,6 +5,7 @@ import AddExhibitItem from "./AddExhibitItem";
 export default function ObjectCard({ exhibit }) {
   const navigate = useNavigate();
 
+  // Render Metropolitan Museum exhibits
   const renderMetropolitanExhibit = () => (
     <div>
       {exhibit.image ? (
@@ -22,6 +23,7 @@ export default function ObjectCard({ exhibit }) {
           onClick={() => navigate(`/met-exhibits/${exhibit.objectID}`)}
         />
       )}
+
       <div className="m-4 flex flex-col">
         <h2 className="font-bold">{exhibit.title}</h2>
         <p>Dated: {exhibit.date}</p>
@@ -34,6 +36,7 @@ export default function ObjectCard({ exhibit }) {
     </div>
   );
 
+  // Render Cleveland Museum artworks
   const renderClevelandArtworks = () => (
     <div>
       {exhibit.image?.url ? (
@@ -51,6 +54,7 @@ export default function ObjectCard({ exhibit }) {
           onClick={() => navigate(`/cleveland-artworks/${exhibit.objectID}`)}
         />
       )}
+
       <div className="m-4 flex flex-col">
         <h2 className="font-bold">{exhibit.title}</h2>
         <p>{exhibit.date}</p>
@@ -59,6 +63,7 @@ export default function ObjectCard({ exhibit }) {
     </div>
   );
 
+  // Determine which museum's exhibits or artworks to render based on the museum value passed from the backend
   const renderExhibitDetails = () => {
     if (exhibit.museum === "metropolitan") {
       return renderMetropolitanExhibit();

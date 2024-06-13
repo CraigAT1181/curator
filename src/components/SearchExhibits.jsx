@@ -3,7 +3,7 @@ import { useSession } from "./SessionContext";
 
 export default function SearchExhibits({ setSearchInitiated, setLastSearch }) {
   const [errorMessage, setErrorMessage] = useState("");
-  let [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState("");
   const { searchTerms, setSearchTerms, setActiveSearch, setPageNumber } =
     useSession();
 
@@ -11,13 +11,14 @@ export default function SearchExhibits({ setSearchInitiated, setLastSearch }) {
     const value = e.target.value;
     setUserInput(value);
 
+    // Sanitize input by removing invalid characters
     const sanitizedInput = value.replace(/[^\w\s]/g, " ");
-
     const keywordArray = sanitizedInput
       .split(" ")
       .filter((word) => word.trim() !== "");
     const joinedString = keywordArray.join(" ");
 
+    // Set sanitized search terms
     setSearchTerms(joinedString);
   };
 
@@ -25,12 +26,15 @@ export default function SearchExhibits({ setSearchInitiated, setLastSearch }) {
     e.preventDefault();
 
     if (searchTerms) {
+      // Reset error message and initiate search
+      setErrorMessage("");
       setActiveSearch(true);
       setSearchInitiated(true);
       setPageNumber(1);
       setLastSearch(searchTerms);
-    } else if (searchTerms === "") {
-      setErrorMessage("Search cannot be blank.");
+    } else {
+      // Set error message if search term is blank or only includes invalid characters
+      setErrorMessage("Must include words or numbers.");
     }
   };
 
@@ -39,19 +43,30 @@ export default function SearchExhibits({ setSearchInitiated, setLastSearch }) {
       <form onSubmit={handleSearch}>
         <div className="w-full relative">
           <input
-            className={`search-input ${errorMessage ? "input-error" : ""}`}
+            className={`${errorMessage ? "input-error" : "search-input"}`}
             value={userInput}
             onChange={handleInputChange}
             type="text"
-            placeholder="Search exhibits"
-            onFocus={(e) => (e.target.placeholder = "")}
+            placeholder="Search Exhibits"
+            onFocus={(e) => {
+              e.target.placeholder = "";
+              setErrorMessage("");
+            }}
+            onBlur={(e) => {
+              e.target.placeholder = "Search Exhibits";
+            }}
           />
-          <button className="search-button">
+          <button
+            type="submit"
+            className="search-button">
             <i
               className="fa-solid fa-magnifying-glass"
               aria-label="search button"
               title="search button"></i>
           </button>
+        </div>
+        <div className="text-center mt-2">
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </form>
     </div>

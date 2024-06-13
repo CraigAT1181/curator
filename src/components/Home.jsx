@@ -31,6 +31,7 @@ export default function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // Logic to select which API request to make
     if (museum) {
       setIsLoading(true);
 
@@ -51,6 +52,7 @@ export default function Home() {
         }
       };
 
+      // Run fetchData to populate exhibits or artworks and set the total pages
       fetchData()
         .then(({ exhibits, artworks, total_pages }) => {
           setIsLoading(false);
@@ -62,6 +64,7 @@ export default function Home() {
           setIsLoading(false);
           setError({ status, statusText });
         });
+    // Set empty values to exhibits and pageTotal if museum isn't selected
     } else {
       setExhibits([]);
       setPageTotal(null);
@@ -110,7 +113,7 @@ export default function Home() {
 
       {exhibits && activeSearch && (
         <div className="flex justify-center mb-2">
-          <div>
+          <div className="mt-2">
             <p className="font-semibold text-center">
               Search results for "{lastSearch}"
             </p>

@@ -5,6 +5,7 @@ import AddExhibitItem from "./AddExhibitItem";
 import { GetSingleClevelandArtwork } from "../api/api";
 
 export default function ObjectPageCleveland() {
+  // Read the objectID from the URL
   const { objectID } = useParams();
 
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ export default function ObjectPageCleveland() {
 
   useEffect(() => {
     setIsLoading(true);
+
+    // Pass the objectID to the backend to fetch a particular artwork
     GetSingleClevelandArtwork(objectID)
       .then(({ artwork }) => {
         setIsLoading(false);
