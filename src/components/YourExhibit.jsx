@@ -13,7 +13,7 @@ export default function YourExhibit() {
         <button
           title="Back button"
           onClick={() => navigate(-1)}>
-          <i className="fa-solid fa-arrow-left"></i>
+          <i className="fa-solid fa-arrow-left"></i> Back
         </button>
       </div>
       {userExhibit.length === 0 && (

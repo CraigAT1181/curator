@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getSingleObject } from "../api/api";
+import AddExhibitItem from "./AddExhibitItem";
 
 export default function ObjectPageMet() {
   const { objectID } = useParams();
@@ -59,10 +60,10 @@ export default function ObjectPageMet() {
         <button
           title="Back button"
           onClick={() => navigate(-1)}>
-          <i className="fa-solid fa-arrow-left"></i>
+          <i className="fa-solid fa-arrow-left"></i> Back
         </button>
       </div>
-      <div>
+      <div className="relative md:w-60">
         {exhibitObject &&
           (exhibitObject.image ? (
             <img
@@ -77,6 +78,9 @@ export default function ObjectPageMet() {
               className="exhibit-object-missing-image"
             />
           ))}
+        <div className="absolute top-2 right-2">
+          <AddExhibitItem exhibit={exhibitObject} />
+        </div>
       </div>
       <div>
         <h1 className="text-2xl">{exhibitObject.title}</h1>

@@ -72,7 +72,9 @@ export default function ObjectCard({ exhibit }) {
   return (
     <div className="card">
       <div>{renderExhibitDetails()}</div>
-      <AddExhibitItem exhibit={exhibit} />
+      <div className="absolute right-2 top-2">
+        <AddExhibitItem exhibit={exhibit} />
+      </div>
     </div>
   );
 }

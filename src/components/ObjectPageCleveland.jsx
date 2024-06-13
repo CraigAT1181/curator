@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import AddExhibitItem from "./AddExhibitItem";
 import { GetSingleClevelandArtwork } from "../api/api";
 
 export default function ObjectPageCleveland() {
@@ -59,11 +60,11 @@ export default function ObjectPageCleveland() {
         <button
           title="Back button"
           onClick={() => navigate(-1)}>
-          <i className="fa-solid fa-arrow-left"></i>
+          <i className="fa-solid fa-arrow-left"></i> Back
         </button>
       </div>
 
-      <div>
+      <div className="relative md:w-60">
         {artwork &&
           (artwork.image?.url ? (
             <img
@@ -78,6 +79,9 @@ export default function ObjectPageCleveland() {
               className="exhibit-object-missing-image"
             />
           ))}
+        <div className="absolute top-2 right-2">
+          <AddExhibitItem exhibit={artwork} />
+        </div>
       </div>
       <div>
         <h1 className="text-2xl">{artwork.title}</h1>
