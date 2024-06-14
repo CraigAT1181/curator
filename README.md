@@ -32,10 +32,10 @@ Visit the hosted site: https://lp-curator.netlify.app/
 
 1. Create a folder on your computer where you would like to store the app files locally. Then,
 
-2. Initialise the folder by typing `git init` in the terminal. Next,
+2. Open up a program such as VSCode, then click `Terminal` at the top, followed by `New Terminal`. Next,
 
-3. Clone the repo from Github by typing `git clone https://github.com/CraigAT1181/curator.git` in the terminal.
+3. In the terminal that appears at the bottom, ensure you are in the folder you've created and type `git init`. Next,
 
-4. Access the local repo, cloned from Github, by typing `cd [your_folder_name]`. Finally,
+4. Clone the repo from Github by typing `git clone https://github.com/CraigAT1181/curator.git`. Finally,
 
 5. Type `npm run dev` in the terminal and ctrl + click the link to the localhost:5173.
