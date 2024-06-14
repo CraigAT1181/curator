@@ -21,10 +21,10 @@ export default function Home() {
     setExhibits,
     searchTerms,
     activeSearch,
-    pageNumber
+    pageNumber,
+    lastSearch
     
   } = useSession();
-  const [lastSearch, setLastSearch] = useState("");
   const [searchInitiated, setSearchInitiated] = useState(false);
   const [pageTotal, setPageTotal] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -107,11 +107,11 @@ export default function Home() {
 
       {exhibits.length > 0 && (
         <div className="md:flex justify-center">
-          <SearchExhibits setSearchInitiated={setSearchInitiated} setLastSearch={setLastSearch} />
+          <SearchExhibits setSearchInitiated={setSearchInitiated}/>
         </div>
       )}
 
-      {exhibits && activeSearch && (
+      {exhibits && activeSearch && (lastSearch === searchTerms) && (
         <div className="flex justify-center mb-2">
           <div className="mt-2">
             <p className="font-semibold text-center">

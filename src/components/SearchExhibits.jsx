@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useSession } from "./SessionContext";
 
-export default function SearchExhibits({ setSearchInitiated, setLastSearch }) {
+export default function SearchExhibits({ setSearchInitiated }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [userInput, setUserInput] = useState("");
-  const { searchTerms, setSearchTerms, setActiveSearch, setPageNumber } =
+  const { searchTerms, setSearchTerms, setActiveSearch, setPageNumber, setLastSearch } =
     useSession();
 
   const handleInputChange = (e) => {

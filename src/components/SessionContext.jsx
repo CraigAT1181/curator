@@ -9,6 +9,7 @@ export function SessionProvider({ children }) {
   const [searchTerms, setSearchTerms] = useState("");
   const [activeSearch, setActiveSearch] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
+  const [lastSearch, setLastSearch] = useState("");
 
   return (
     <SessionContext.Provider
@@ -24,7 +25,9 @@ export function SessionProvider({ children }) {
         activeSearch,
         setActiveSearch,
         pageNumber,
-        setPageNumber
+        setPageNumber,
+        lastSearch,
+        setLastSearch
       }}>
       {children}
     </SessionContext.Provider>
