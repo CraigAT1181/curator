@@ -22,8 +22,7 @@ export default function Home() {
     searchTerms,
     activeSearch,
     pageNumber,
-    lastSearch
-    
+    lastSearch,
   } = useSession();
   const [searchInitiated, setSearchInitiated] = useState(false);
   const [pageTotal, setPageTotal] = useState(null);
@@ -64,12 +63,19 @@ export default function Home() {
           setIsLoading(false);
           setError({ status, statusText });
         });
-    // Set empty values to exhibits and pageTotal if museum isn't selected
+      // Set empty values to exhibits and pageTotal if museum isn't selected
     } else {
       setExhibits([]);
       setPageTotal(null);
     }
   }, [museum, pageNumber, activeSearch, searchInitiated]);
+
+  // Capture server errors and forward onto the error-page
+  useEffect(() => {
+    if (error && error.status === 500) {
+      navigate("/error-page");
+    }
+  }, [error, navigate]);
 
   if (isLoading) {
     return (
@@ -82,7 +88,7 @@ export default function Home() {
     );
   }
 
-  if (error)
+  if (error) {
     return (
       <div className="d-flex-col text-center mt-4">
         <i className="fa-solid fa-exclamation"></i>
@@ -98,6 +104,7 @@ export default function Home() {
         </button>
       </div>
     );
+  }
 
   return (
     <div>
@@ -107,11 +114,11 @@ export default function Home() {
 
       {exhibits.length > 0 && (
         <div className="md:flex justify-center">
-          <SearchExhibits setSearchInitiated={setSearchInitiated}/>
+          <SearchExhibits setSearchInitiated={setSearchInitiated} />
         </div>
       )}
 
-      {exhibits && activeSearch && (lastSearch === searchTerms) && (
+      {exhibits && activeSearch && lastSearch === searchTerms && (
         <div className="flex justify-center mb-2">
           <div className="mt-2">
             <p className="font-semibold text-center">
